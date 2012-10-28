@@ -5,6 +5,12 @@ The files in this directory are used to create the Mac Application bundle
 for Geany. Bundles contain all the dependencies, configuration, themes
 and so on that are needed to run Geany.
 
+Experimental builds
+-------------------
+
+Visit downloads for a list of experimental builds. (Require Mac OSX 10.7+)
+![Geany on Mac OSX Mountain Lion](https://github.com/trongthanh/geany-osx-essentials/raw/master/screenshot.png)
+
 Compilation guide
 -----------------
 
