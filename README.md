@@ -13,25 +13,32 @@ elsewhere, the basic process is:
 
 1. Download and run the `gtk-osx-build-setup.sh` script.  
     This prepares the jhbuild environment for building
-2. Copy the `jhbuildrc-custom` to `~/.jhbuildrc-custom`, 
+2. Checkout this repo into submodule 'osx' of main Geany source.
+3. Copy the `jhbuildrc-custom` to `~/.jhbuildrc-custom`, 
     over-writing the existing files.
-3. Run jhbuild to get a OSX compatible GTK+ install with all needed
+4. Run jhbuild to get a OSX compatible GTK+ install with all needed
     dependencies. To do this, run these commands:  
+
+    ```shell  
+    $ jhbuild bootstrap
+    $ jhbuild build meta-gtk-osx-bootstrap
+    $ jhbuild build meta-gtk-osx-core
     ```
-    $ jhbuild bootstrap  
-    $ jhbuild build meta-gtk-osx-bootstrap  
-    $ jhbuild build meta-gtk-osx-core  
-    ```
-4. Download, compile and install the Murrine GTK+ engine into the
+5. Download, compile and install the Murrine GTK+ engine into the
     jhbuild $PREFIX. This is optional, but allows for better themeing.
-5. Download, compile and install the VTE library into the jhbuild 
+6. Download, compile and install the VTE library into the jhbuild 
     $PREFIX. This is optional, but allows for Terminal support in Geany.
-6. Use jhbuild-shell to setup environment for building Geany.
-7. Compile and install Geany into the jhbuild $PREFIX.
-8. Download and install: `gtk-mac-bundler` 
-9. Change to the `osx/` directory in Geany's source tree (this one this
-    file is in) and run `gtk-mac-bundler geany.bundle` to create the application
-    bundle.
+7. Use jhbuild-shell to setup environment for building Geany.
+8. Compile and install Geany into the jhbuild $PREFIX.
+9. Download and install: `gtk-mac-bundler`
+10. Change to the `osx/` directory in Geany's source tree (this one this file 
+    is in) and create the application bundle by running:
+
+    ```shell
+    $ jhbuild shell
+    $ export PATH=$PREFIX/bin:~/.local/bin:$PATH
+    $ gtk-mac-bundler geany.bundle
+    ```
 
 Note: prepare to be frustrated ;)
 
@@ -87,5 +94,5 @@ that needs to be done before running Geany can be done in here.
 
 AUTHORS
 ------
-- Matthew Brush (Original author) <matt(at)geany(dot)org>
-- Trong-Thanh Tran <trongthanh(at)gmail(dot)com>
+- Matthew Brush &lt;matt(at)geany(dot)org&gt;: Original author
+- Trong-Thanh Tran &lt;trongthanh(at)gmail(dot)com&gt;: Update and build with Mountain Lion
