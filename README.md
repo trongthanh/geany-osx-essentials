@@ -5,11 +5,7 @@ The files in this directory are used to create the Mac Application bundle
 for Geany. Bundles contain all the dependencies, configuration, themes
 and so on that are needed to run Geany.
 
-Experimental builds
--------------------
-
-Visit downloads for a list of experimental builds. (Require Mac OSX 10.7+)
-![Geany on Mac OSX Mountain Lion](https://github.com/trongthanh/geany-osx-essentials/raw/master/screenshot.png)
+![Geany on Mac OSX Mountain Lion](https://github.com/trongthanh/geany-osx-essentials/raw/master/screenshot.png "Geany on Mountain Lion")
 
 Compilation guide
 -----------------
@@ -17,13 +13,13 @@ Compilation guide
 Without repeating all kinds of documentation that is already available
 elsewhere, the basic process is:
 
-1. Download and run the `gtk-osx-build-setup.sh` script.  
+1. Download and run the [`gtk-osx-build-setup.sh`][gtk-osx-build] script.  
     This prepares the jhbuild environment for building
 2. Checkout this repo into submodule 'osx' of main Geany source.
 3. Copy the `jhbuildrc-custom` to `~/.jhbuildrc-custom`, 
     over-writing the existing files.
 4. Run jhbuild to get a OSX compatible GTK+ install with all needed
-    dependencies. To do this, run these commands:  
+    dependencies. To do this, run these commands:
 
     ```shell  
     $ jhbuild bootstrap
@@ -32,12 +28,13 @@ elsewhere, the basic process is:
     ```
 5. Download, compile and install the Murrine GTK+ engine into the
     jhbuild $PREFIX. This is optional, but allows for better themeing.
-6. Download, compile and install the VTE library into the jhbuild 
+6. Download, compile and install the [VTE library][vtelib] into the jhbuild 
     $PREFIX. This is optional, but allows for Terminal support in Geany.
-7. Use jhbuild-shell to setup environment for building Geany.
+7. Use `jhbuild shell` to setup environment for building Geany.
 8. Compile and install Geany into the jhbuild $PREFIX.
-9. Download and install: `gtk-mac-bundler`
-10. Change to the `osx/` directory in Geany's source tree (this one this file 
+9. Compile and install Geany plugins into the jhbuild $PREFIX.
+10. Download and install: [`gtk-mac-bundler`][gtk-mac-bundler]
+11. Change to the `osx/` directory in Geany's source tree (the one this file 
     is in) and create the application bundle by running:
 
     ```shell
@@ -88,7 +85,7 @@ theme used in Xubuntu (and elsewhere on Linux).
 ### jhbuildrc-custom
 
 Config files for jhbuild to ensure the proper building.
-  - These should be copied to ~/.jhbuildrc and ~/.jhbuildrc-custom before
+  - These should be copied to ~/.jhbuildrc-custom before
     the first run of jhbuild so that it builds for the right architecture
     and so on.
 
@@ -98,7 +95,23 @@ Shell script copied into bundle that actually gets called first and
 prepares the environment for running the real Geany binary. Anything
 that needs to be done before running Geany can be done in here.
 
-AUTHORS
+Binary Downloads
+-------------------
+
+The builds in downloads section are still experimental. There is no guarantee that they will run on your Mac. (Require Mac OSX 10.7+ 64-bit)
+Extra plugins (some but not all) were compiled and bundled.
+
+Known issues:
+- Terminal panel not working due to no vtelib.so, a fix is in progress
+- No Mac (global) menu. (Menu is still attached to window)
+- Some keybindings don't work. For e.g. F7, F11...
+
+Authors
 ------
-- Matthew Brush &lt;matt(at)geany(dot)org&gt;: Original author
+- Matthew Brush &lt;matt(at)geany(dot)org&gt;: [Original author][original-repo]
 - Trong-Thanh Tran &lt;trongthanh(at)gmail(dot)com&gt;: Update and build with Mountain Lion
+
+[gtk-osx-build]: https://live.gnome.org/GTK%2B/OSX/Building
+[vtelib]: http://www.linuxfromscratch.org/blfs/view/svn/xfce/vte2.html
+[gtk-mac-bundler]: https://live.gnome.org/GTK%2B/OSX/Bundling
+[original-repo]: https://github.com/codebrainz/geany/tree/wip/gtk-osx
