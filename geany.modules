@@ -16,7 +16,7 @@
   <autotools id="vte2"
              autogenargs="--disable-Bsymbolic" > <!-- work around Bsymbolic func error-->
     <branch repo="ftp.gnome.org" 
-            module="vte/0.28/vte-0.28.2.tar.xz"
+            module="vte/0.28/vte-0.28.2.tar.xz" 
             version="0.28.2"
             hash="md5:497f26e457308649e6ece32b3bb142ff" />
   </autotools>
