@@ -171,3 +171,6 @@ setup_sdk(target=_target, sdk_version="native", architectures=[_default_arch])
 # a fix found from http://www.mail-archive.com/gtk-osx-users-list@gnome.org/msg00058.html
 append_autogenargs("pango", "--disable-introspection")
 append_autogenargs("gtk+", "--disable-introspection")
+
+# declare geany moduleset
+moduleset = os.environ["HOME"] + "/Source/geany/osx/geany.modules"

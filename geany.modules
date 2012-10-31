@@ -1,0 +1,54 @@
+<?xml version="1.0"?><!--*- mode: nxml -*-->
+<!DOCTYPE moduleset SYSTEM "moduleset.dtd">
+<?xml-stylesheet type="text/xsl" href="moduleset.xsl"?>
+<moduleset>
+  <include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules" />
+
+  <repository type="tarball" name="ftp.gnome.org"
+              href="http://ftp.gnome.org/pub/GNOME/sources/"/>
+  <repository type="git" name="github.com" href="https://github.com/"/>
+  <repository type="git" name="localfs" href="/users/thanh/Source/"/>
+  
+  <!-- to include plugin moduleset
+  <include href="gnome-suites-2.32.modules"/>
+  -->
+  
+  <autotools id="vte2"
+             autogenargs="--disable-Bsymbolic" > <!-- work around Bsymbolic func error-->
+    <branch repo="ftp.gnome.org" 
+            module="vte/0.28/vte-0.28.2.tar.xz"
+            version="0.28.2"
+            hash="md5:497f26e457308649e6ece32b3bb142ff" />
+  </autotools>
+  
+  <autotools id="geany-main">
+    <!--<branch repo="github.com" 
+            module="geany/geany.git"
+            revision="master" />-->
+    <branch repo="localfs" 
+            module="geany"
+            revision="master" />
+    <dependencies>
+      <dep package="vte2" />
+    </dependencies>
+  </autotools>
+  
+  <autotools id="geany-plugins">
+    <!--<branch repo="github.com" 
+            module="geany/geany.git"
+            revision="master" />-->
+    <branch repo="localfs" 
+            module="geany-plugins"
+            revision="master" />
+  </autotools>
+  
+  <metamodule id="geany-osx">
+    <dependencies>
+      <dep package="geany-main" />
+      <dep package="geany-plugins" />
+    </dependencies>
+  </metamodule>
+  
+
+
+</moduleset>
